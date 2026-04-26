@@ -1,480 +1,191 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>FOREX FOCUS | Forex Educations </title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Forex The Right Way</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{width:100%;min-height:100vh;overflow-x:hidden;overflow-y:auto;
-  cursor:pointer;font-family:'Poppins',sans-serif;background:#010c04;color:#fff}
+*{margin:0;padding:0;box-sizing:border-box;}
 
-.bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.bg-aurora{position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 100% 60% at 50% -5%,rgba(0,255,80,.18) 0%,transparent 60%),
-    radial-gradient(ellipse 60% 50% at 95% 105%,rgba(255,40,70,.1) 0%,transparent 55%),
-    radial-gradient(ellipse 50% 45% at 5% 95%,rgba(0,160,60,.07) 0%,transparent 50%);
-  animation:aur 8s ease-in-out infinite alternate}
-@keyframes aur{0%{opacity:.8}100%{opacity:1;filter:brightness(1.2)}}
-.bg-grid{position:absolute;inset:0;
-  background-image:linear-gradient(rgba(0,255,80,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,255,80,.035) 1px,transparent 1px);
-  background-size:55px 55px}
-.bg-cg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:80vmin;height:80vmin;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,255,80,.09) 0%,transparent 65%);
-  animation:cg 5s ease-in-out infinite alternate;pointer-events:none}
-@keyframes cg{from{transform:translate(-50%,-50%) scale(.88);opacity:.5}to{transform:translate(-50%,-50%) scale(1.1);opacity:1}}
-canvas{position:absolute;inset:0}
-
-.ticker{position:fixed;top:0;left:0;right:0;z-index:300;
-  height:28px;overflow:hidden;
-  background:rgba(1,12,4,.98);border-bottom:1px solid rgba(0,255,80,.1);
-  display:flex;align-items:center}
-.t-track{display:flex;white-space:nowrap;animation:tick 26s linear infinite;align-items:center}
-@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ti{padding:0 20px;font-size:9.5px;font-weight:600;letter-spacing:1px}
-.ti.up{color:#00ff55}.ti.dn{color:#ff3349}
-
-.page{position:relative;z-index:10;min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:50px 16px 58px;gap:0}
-
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.05s}.d2{transition-delay:.14s}.d3{transition-delay:.23s}
-.d4{transition-delay:.32s}.d5{transition-delay:.41s}.d6{transition-delay:.50s}.d7{transition-delay:.59s}
-
-.logo-area{position:relative;display:flex;flex-direction:column;align-items:center;margin-bottom:12px}
-.logo-halo{position:absolute;top:50%;left:50%;transform:translate(-50%,-56%);
-  width:190px;height:190px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,255,80,.22) 0%,transparent 65%);
-  animation:halo 4s ease-in-out infinite alternate;pointer-events:none}
-@keyframes halo{from{transform:translate(-50%,-56%) scale(.9);opacity:.6}to{transform:translate(-50%,-56%) scale(1.1);opacity:1}}
-.logo-wrap{position:relative;width:90px;height:90px}
-.l-spin{position:absolute;inset:-4px;border-radius:50%;
-  background:conic-gradient(#00ff55 0deg,#ffd700 85deg,#ff3349 175deg,#00ff55 360deg);
-  animation:spin 3.5s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.l-bg{position:absolute;inset:3px;border-radius:50%;background:#010c04}
-.l-img{position:absolute;inset:6px;border-radius:50%;overflow:hidden}
-.l-img img{width:100%;height:100%;object-fit:cover}
-.l-glow{position:absolute;inset:-2px;border-radius:50%;
-  box-shadow:0 0 30px rgba(0,255,80,.38),0 0 65px rgba(0,255,80,.1);pointer-events:none}
-.king-tag{margin-top:8px;
-  background:linear-gradient(135deg,#ffd700,#ffaa00,#ff8c00);
-  color:#000;font-size:9px;font-weight:800;
-  padding:3px 14px;border-radius:20px;letter-spacing:2px;
-  box-shadow:0 0 18px rgba(255,200,0,.5),0 3px 10px rgba(0,0,0,.5)}
-
-.title-area{text-align:center;margin-bottom:10px}
-.title-area h1{font-size:clamp(32px,8.5vw,64px);font-weight:900;line-height:.95;letter-spacing:-2px;
-  text-shadow:0 0 70px rgba(0,255,80,.18)}
-.tg{color:#00ff55}.tw{color:#fff}.tr{color:#ff3349}
-.sub1{font-size:clamp(8px,2vw,11px);font-weight:600;letter-spacing:4px;
-  color:rgba(255,255,255,.28);text-transform:uppercase;margin-top:7px}
-
-.tagline{padding:8px 18px;border-radius:50px;
-  background:linear-gradient(135deg,rgba(0,255,80,.07),rgba(0,255,80,.02));
-  border:1px solid rgba(0,255,80,.16);
-  font-size:clamp(10px,2.5vw,13px);font-weight:600;color:rgba(255,255,255,.55);
-  letter-spacing:.2px;margin-bottom:13px}
-.tagline span{color:#00ff55;font-weight:700}
-
-.stats{display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap;justify-content:center}
-.stat{position:relative;padding:9px 16px;text-align:center;
-  border-radius:14px;overflow:hidden;
-  background:rgba(255,255,255,.03);border:1px solid rgba(0,255,80,.14);
-  transition:.25s;cursor:default;min-width:88px}
-.stat:hover{transform:translateY(-4px);border-color:rgba(0,255,80,.42);
-  box-shadow:0 10px 35px rgba(0,255,80,.14);background:rgba(0,255,80,.06)}
-.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
-  background:linear-gradient(90deg,transparent,rgba(0,255,80,.55),transparent)}
-.stat::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.04) 50%,transparent 70%);
-  animation:sh 3.2s ease-in-out infinite}
-.stat:nth-child(2)::after{animation-delay:1s}
-.stat:nth-child(3)::after{animation-delay:2s}
-@keyframes sh{0%,100%{opacity:0;transform:translateX(-100%)}50%{opacity:1;transform:translateX(100%)}}
-.sn{display:block;font-size:clamp(20px,4.5vw,26px);font-weight:900;color:#00ff55;
-  line-height:1;text-shadow:0 0 22px rgba(0,255,80,.5)}
-.sl{font-size:clamp(7px,1.8vw,9px);font-weight:600;letter-spacing:1.5px;
-  color:rgba(255,255,255,.25);text-transform:uppercase;margin-top:2px}
-
-.proof{display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-bottom:11px;flex-wrap:wrap}
-.proof-item{display:flex;align-items:center;gap:4px;
-  font-size:clamp(8px,2vw,10px);font-weight:600;color:rgba(255,255,255,.38);letter-spacing:.2px}
-.stars{color:#ffd700;font-size:clamp(10px,2.5vw,12px);letter-spacing:-1px}
-.pdot{width:3px;height:3px;border-radius:50%;background:rgba(0,255,80,.35)}
-
-.feats{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;justify-content:center}
-.feat{display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:8px 10px;border-radius:13px;
-  border:1px solid rgba(0,255,80,.1);background:rgba(0,255,80,.025);
-  transition:.22s;cursor:default;min-width:56px}
-.feat:hover{border-color:rgba(0,255,80,.36);background:rgba(0,255,80,.07);transform:translateY(-3px)}
-.fi{font-size:clamp(17px,4vw,21px)}
-.ft{font-size:clamp(8px,2vw,9.5px);font-weight:700;color:rgba(255,255,255,.75);text-align:center;white-space:nowrap}
-
-/* ═══════════════════════════════════
-   PREMIUM BUTTONS
-═══════════════════════════════════ */
-.cta-area{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:14px;width:100%}
-
-.btn-group{
-  position:relative;
-  display:flex;flex-direction:column;gap:10px;
-  width:min(430px,93vw);
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0a0615;
+    color:#fff;
+    text-align:center;
+    overflow-x:hidden;
 }
 
-/* Outer glow ring */
-.btn-group::before{
-  content:'';
-  position:absolute;inset:-8px;
-  border-radius:24px;
-  border:1px solid rgba(0,255,80,.12);
-  animation:outerRing 3s ease-in-out infinite;
-  pointer-events:none;
+/* Glow Background */
+body::before, body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(120px);
+    z-index:-1;
 }
-@keyframes outerRing{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.008)}}
-
-/* ── TELEGRAM BUTTON ── */
-.btn-tg{
-  position:relative;
-  display:flex;align-items:stretch;
-  height:68px;
-  border-radius:20px;
-  text-decoration:none;
-  overflow:hidden;
-  background:linear-gradient(135deg,#00ff55 0%,#00d94a 45%,#00b83c 100%);
-  box-shadow:
-    0 0 0 1.5px rgba(0,255,80,.6),
-    0 10px 36px rgba(0,255,80,.5),
-    0 3px 10px rgba(0,0,0,.55),
-    inset 0 1px 0 rgba(255,255,255,.3),
-    inset 0 -1px 0 rgba(0,0,0,.15);
-  animation:tgGlow 2s ease-in-out infinite;
-  transition:transform .2s,box-shadow .2s;
+body::before{
+    background:#ff00c8;
+    top:-150px;
+    left:-150px;
+    opacity:0.25;
 }
-@keyframes tgGlow{
-  0%,100%{box-shadow:0 0 0 1.5px rgba(0,255,80,.6),0 10px 36px rgba(0,255,80,.5),0 3px 10px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.15)}
-  50%{box-shadow:0 0 0 2px rgba(0,255,80,.9),0 16px 55px rgba(0,255,80,.75),0 5px 18px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.15),0 0 80px rgba(0,255,80,.2)}
-}
-.btn-tg:hover{transform:translateY(-4px) scale(1.03);animation-play-state:paused;
-  box-shadow:0 0 0 2px rgba(0,255,80,1),0 20px 65px rgba(0,255,80,.8),0 8px 24px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.3)}
-.btn-tg:active{transform:scale(.97)}
-/* Sheen */
-.btn-tg::after{
-  content:'';position:absolute;top:0;left:-130%;
-  width:55%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);
-  animation:sheen 2.4s ease-in-out infinite;pointer-events:none;
-}
-@keyframes sheen{0%,100%{left:-130%}58%{left:150%}}
-
-.btn-tg .b-left{
-  display:flex;align-items:center;justify-content:center;
-  width:62px;flex-shrink:0;
-  background:rgba(0,0,0,.16);
-  border-right:1px solid rgba(255,255,255,.18);
-}
-.btn-tg .b-left svg{width:28px;height:28px;fill:#001a08;drop-shadow:0 0 6px rgba(0,0,0,.3)}
-.btn-tg .b-mid{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  flex:1;gap:2px;
-}
-.btn-tg .b-top{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(0,25,10,.6);line-height:1}
-.btn-tg .b-bot{font-size:clamp(14px,3.8vw,18px);font-weight:900;letter-spacing:.3px;text-transform:uppercase;color:#001a08;line-height:1.1}
-.btn-tg .b-right{
-  display:flex;align-items:center;justify-content:center;
-  width:48px;flex-shrink:0;
-  background:rgba(0,0,0,.12);
-  border-left:1px solid rgba(255,255,255,.14);
-  font-size:22px;color:rgba(0,25,10,.4);font-weight:300;
-}
-/* HOT badge */
-.hot-badge{
-  position:absolute;top:-1px;right:16px;
-  background:linear-gradient(135deg,#ff2744,#cc1228);
-  color:#fff;font-size:8px;font-weight:900;
-  padding:3px 11px;border-radius:0 0 12px 12px;
-  letter-spacing:1.5px;text-transform:uppercase;
-  box-shadow:0 4px 14px rgba(255,39,68,.55);
-  animation:badgeDrop .5s cubic-bezier(.34,1.56,.64,1) .9s both;
-}
-@keyframes badgeDrop{from{transform:translateY(-110%);opacity:0}to{transform:translateY(0);opacity:1}}
-
-/* ── WHATSAPP BUTTON ── */
-.btn-wa{
-  position:relative;
-  display:flex;align-items:stretch;
-  height:68px;
-  border-radius:20px;
-  text-decoration:none;
-  overflow:hidden;
-  background:linear-gradient(135deg,#25D366 0%,#1ab954 45%,#0e8a6e 100%);
-  box-shadow:
-    0 0 0 1.5px rgba(37,211,102,.55),
-    0 10px 32px rgba(37,211,102,.42),
-    0 3px 10px rgba(0,0,0,.55),
-    inset 0 1px 0 rgba(255,255,255,.25),
-    inset 0 -1px 0 rgba(0,0,0,.12);
-  animation:waGlow 2.3s ease-in-out infinite .35s;
-  transition:transform .2s,box-shadow .2s;
-}
-@keyframes waGlow{
-  0%,100%{box-shadow:0 0 0 1.5px rgba(37,211,102,.55),0 10px 32px rgba(37,211,102,.42),0 3px 10px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 0 rgba(0,0,0,.12)}
-  50%{box-shadow:0 0 0 2px rgba(37,211,102,.8),0 16px 50px rgba(37,211,102,.65),0 5px 18px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 0 rgba(0,0,0,.12),0 0 70px rgba(37,211,102,.18)}
-}
-.btn-wa:hover{transform:translateY(-4px) scale(1.03);animation-play-state:paused;
-  box-shadow:0 0 0 2px rgba(37,211,102,1),0 20px 60px rgba(37,211,102,.7),0 8px 24px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.25)}
-.btn-wa:active{transform:scale(.97)}
-.btn-wa::after{
-  content:'';position:absolute;top:0;left:-130%;
-  width:55%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
-  animation:sheen 2.8s ease-in-out infinite .5s;pointer-events:none;
-}
-.btn-wa .b-left{
-  display:flex;align-items:center;justify-content:center;
-  width:62px;flex-shrink:0;
-  background:rgba(0,0,0,.14);
-  border-right:1px solid rgba(255,255,255,.14);
-}
-.btn-wa .b-left svg{width:28px;height:28px;fill:#fff}
-.btn-wa .b-mid{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  flex:1;gap:2px;
-}
-.btn-wa .b-top{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.65);line-height:1}
-.btn-wa .b-bot{font-size:clamp(14px,3.8vw,18px);font-weight:900;letter-spacing:.3px;text-transform:uppercase;color:#fff;line-height:1.1}
-.btn-wa .b-right{
-  display:flex;align-items:center;justify-content:center;
-  width:48px;flex-shrink:0;
-  background:rgba(0,0,0,.1);
-  border-left:1px solid rgba(255,255,255,.1);
-  font-size:22px;color:rgba(255,255,255,.4);font-weight:300;
+body::after{
+    background:#6a00ff;
+    bottom:-150px;
+    right:-150px;
+    opacity:0.25;
 }
 
-/* Subtext */
-.cta-sub{
-  display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:center;
-  font-size:clamp(7.5px,1.8vw,9px);font-weight:600;letter-spacing:1.8px;
-  color:rgba(255,255,255,.18);text-transform:uppercase;text-align:center;
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:70px 20px;
 }
-.cta-sub .cdot{color:rgba(0,255,80,.28);font-size:11px;line-height:1}
 
-/* ── DISCLAIMER ── */
-.disc{padding:7px 14px;border:1px dashed rgba(255,200,0,.14);border-radius:10px;
-  background:rgba(255,200,0,.018);
-  font-size:clamp(7.5px,1.9vw,9px);color:rgba(255,255,255,.18);
-  text-align:center;max-width:min(500px,88vw);line-height:1.6}
-.disc b{color:rgba(255,200,0,.45)}
-
-footer{position:fixed;bottom:0;left:0;right:0;z-index:300;
-  padding:7px 20px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(1,12,4,.97);border-top:1px solid rgba(0,255,80,.06)}
-.credit{font-size:10px;font-weight:500;color:rgba(255,255,255,.18)}
-.credit a{color:#00ff55;font-weight:700;text-decoration:none;transition:.2s}
-.credit a:hover{color:#fff}
-
-@media(max-width:480px){
-  .page{padding:44px 12px 56px}
-  .logo-area{margin-bottom:8px}
-  .logo-wrap{width:78px;height:78px}
-  .logo-halo{width:155px;height:155px}
-  .king-tag{font-size:8px;padding:3px 11px}
-  .title-area{margin-bottom:7px}
-  .title-area h1{font-size:clamp(28px,9.5vw,38px);letter-spacing:-1.5px}
-  .tagline{font-size:10px;padding:7px 14px;margin-bottom:9px}
-  .stats{gap:6px;margin-bottom:9px}
-  .stat{padding:7px 10px;min-width:80px;border-radius:11px}
-  .proof{margin-bottom:8px;gap:5px}
-  .feats{gap:5px;margin-bottom:14px}
-  .feat{padding:7px 7px;min-width:50px;border-radius:10px}
-  .btn-group{width:95vw;gap:9px}
-  .btn-tg,.btn-wa{height:62px;border-radius:16px}
-  .btn-tg .b-left,.btn-wa .b-left{width:54px}
-  .btn-tg .b-right,.btn-wa .b-right{width:42px;font-size:19px}
-  .btn-tg .b-left svg,.btn-wa .b-left svg{width:24px;height:24px}
-  .btn-tg .b-bot,.btn-wa .b-bot{font-size:14px}
-  .cta-area{gap:11px;margin-bottom:11px}
-  .disc{font-size:7.5px;padding:6px 11px}
+/* Logo */
+.logo{
+    width:100px;
+    border-radius:50%;
+    display:block;
+    margin:0 auto;
 }
-@media(max-height:620px){
-  .tagline{display:none}.proof{display:none}.disc{display:none}
-  .logo-area{margin-bottom:5px}.stats{margin-bottom:7px}.feats{margin-bottom:10px}
+
+/* Badge */
+.badge{
+    margin-top:20px;
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    background:linear-gradient(90deg,#ff00c8,#6a00ff);
+}
+
+/* Offer */
+.offer{
+    margin-top:25px;
+    font-weight:700;
+    font-size:18px;
+    background:linear-gradient(90deg,#ff00c8,#6a00ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* Channel Name */
+h1{
+    margin-top:25px;
+    font-size:42px;
+    font-weight:800;
+    line-height:1.3;
+}
+
+/* Countdown */
+.countdown{
+    margin-top:30px;
+    font-size:20px;
+    font-weight:700;
+}
+
+/* Button */
+.cta{
+    margin-top:20px;
+}
+.cta a{
+    display:inline-block;
+    padding:18px 55px;
+    border-radius:60px;
+    font-size:18px;
+    font-weight:700;
+    text-decoration:none;
+    background:linear-gradient(90deg,#ff00c8,#6a00ff);
+    color:#fff;
+    box-shadow:0 0 25px rgba(255,0,200,0.4);
+    transition:0.3s;
+}
+.cta a:hover{transform:scale(1.07);}
+
+/* Members */
+.members{
+    margin-top:20px;
+    font-size:15px;
+    opacity:0.85;
+}
+
+/* Features */
+.features{
+    margin-top:90px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+.card{
+    padding:40px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.3s;
+}
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 30px rgba(255,0,200,0.3);
+}
+.icon{
+    margin-bottom:20px;
+}
+.card h3{
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+/* Final CTA */
+.final-cta{
+    margin-top:120px;
+    padding:60px 30px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#ff00c8,#6a00ff);
+}
+.final-cta h2{
+    font-size:30px;
+    margin-bottom:20px;
+}
+.final-cta a{
+    display:inline-block;
+    padding:15px 45px;
+    border-radius:50px;
+    background:#fff;
+    color:#6a00ff;
+    font-weight:700;
+    text-decoration:none;
+}
+
+/* Footer */
+.footer{
+    margin-top:80px;
+    font-size:14px;
+    opacity:0.7;
+}
+.footer a{
+    color:#ff00c8;
+    text-decoration:none;
+}
+.disclaimer{
+    margin-top:20px;
+    font-size:13px;
+    opacity:0.6;
+    line-height:1.6;
+}
+
+@media(max-width:768px){
+    h1{font-size:28px;}
 }
 </style>
 </head>
-<body onclick="window.open('https://t.me/+yFTKx53ZJYI3ZjQ1','_blank')">
-
-<div class="bg">
-  <div class="bg-aurora"></div>
-  <div class="bg-grid"></div>
-  <canvas id="c"></canvas>
-  <div class="bg-cg"></div>
-</div>
-
-<div class="ticker">
-  <div class="t-track">
-    <span class="ti up">EUR/USD ▲ +0.42%</span>
-    <span class="ti dn">GBP/USD ▼ −0.31%</span>
-    <span class="ti up">USD/JPY ▲ +0.67%</span>
-    <span class="ti up">XAU/USD ▲ +1.15%</span>
-    <span class="ti dn">AUD/USD ▼ −0.28%</span>
-    <span class="ti up">USD/CAD ▲ +0.19%</span>
-    <span class="ti dn">NZD/USD ▼ −0.54%</span>
-    <span class="ti up">USD/CHF ▲ +0.33%</span>
-    <span class="ti up">WTI OIL ▲ +0.88%</span>
-    <span class="ti dn">EUR/GBP ▼ −0.22%</span>
-    <span class="ti up">BTC/USD ▲ +2.40%</span>
-    <span class="ti dn">USD/INR ▼ −0.14%</span>
-    <span class="ti up">EUR/USD ▲ +0.42%</span>
-    <span class="ti dn">GBP/USD ▼ −0.31%</span>
-    <span class="ti up">USD/JPY ▲ +0.67%</span>
-    <span class="ti up">XAU/USD ▲ +1.15%</span>
-    <span class="ti dn">AUD/USD ▼ −0.28%</span>
-    <span class="ti up">USD/CAD ▲ +0.19%</span>
-    <span class="ti dn">NZD/USD ▼ −0.54%</span>
-    <span class="ti up">USD/CHF ▲ +0.33%</span>
-    <span class="ti up">WTI OIL ▲ +0.88%</span>
-    <span class="ti dn">EUR/GBP ▼ −0.22%</span>
-    <span class="ti up">BTC/USD ▲ +2.40%</span>
-    <span class="ti dn">USD/INR ▼ −0.14%</span>
-  </div>
-</div>
-
-<div class="page">
-
-  <div class="logo-area reveal d1">
-    <div class="logo-halo"></div>
-    <div class="logo-wrap">
-      <div class="l-spin"></div>
-      <div class="l-bg"></div>
-      <div class="l-img">
-        <img src="https://salmon-mandrill-935968.hostingersite.com/wp-content/uploads/2025/10/focus-forex-logo.jpg" alt=" Forex Trading"/>
-      </div>
-      <div class="l-glow"></div>
-    </div>
-    <div class="king-tag">💹 TOP FOREX CHANNEL</div>
-  </div>
-
-  <div class="title-area reveal d2">
-    <h1><span class="tg">FOREX</span> <span class="tw">FOCUS</span> <span class="tr">Trading</span></h1>
-    <div class="sub1">Premium Forex &amp; Currency Market Signals</div>
-  </div>
-
-  <div class="tagline reveal d3">
-    💰 <span>5,000+ forex traders</span> are already winning — get free signals today!
-  </div>
-
-  <div class="stats reveal d4">
-    <div class="stat"><span class="sn">5K+</span><span class="sl">Members</span></div>
-    <div class="stat"><span class="sn">DAILY</span><span class="sl">Forex Signals</span></div>
-    <div class="stat"><span class="sn">100%</span><span class="sl">Free to Join</span></div>
-  </div>
-
-  <div class="proof reveal d4">
-    <div class="proof-item"><span class="stars">★★★★★</span></div>
-    <div class="pdot"></div>
-    <div class="proof-item">Trusted by thousands of forex traders</div>
-    <div class="pdot"></div>
-    <div class="proof-item">Signals every trading session</div>
-  </div>
-
-  <div class="feats reveal d5">
-    <div class="feat"><div class="fi">💱</div><div class="ft">Forex Pairs</div></div>
-    <div class="feat"><div class="fi">🎯</div><div class="ft">Entry &amp; TP</div></div>
-    <div class="feat"><div class="fi">⚡</div><div class="ft">Live Signals</div></div>
-    <div class="feat"><div class="fi">🥇</div><div class="ft">Gold / XAU</div></div>
-    <div class="feat"><div class="fi">🛡️</div><div class="ft">Stop Loss</div></div>
-  </div>
-
-  <!-- ═══ PREMIUM BUTTONS ═══ -->
-  <div class="cta-area reveal d6">
-    <div class="btn-group">
-
-      <!-- TELEGRAM -->
-      <a class="btn-tg" href="https://t.me/+RHarP4-z8M82ZGE1" target="_blank" onclick="event.stopPropagation()">
-        <div class="hot-badge">🔥 FREE JOIN</div>
-        <div class="b-left">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.247-2.007 9.455c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.367l-2.97-.927c-.646-.204-.66-.646.136-.956l11.59-4.467c.537-.195 1.007.12.836.956l-.22-.726z"/></svg>
-        </div>
-        <div class="b-mid">
-          <span class="b-top">🚀 Join Free on</span>
-          <span class="b-bot">Telegram Channel</span>
-        </div>
-        <div class="b-right">›</div>
-      </a>
-
-    
-
-    </div>
-
-    <div class="cta-sub">
-      <span>✦ Free Signals</span>
-      <span class="cdot">·</span>
-      <span>No Spam</span>
-      <span class="cdot">·</span>
-      <span>5,000+ Traders</span>
-      <span class="cdot">·</span>
-      <span>Join Now ✦</span>
-    </div>
-  </div>
-
-  <div class="disc reveal d7">
-    <b>⚠ Disclaimer:</b> All forex signals are strictly for <b>educational &amp; informational purposes only</b>. Trading forex involves high risk. Past performance does not guarantee future results. Trade at your own risk.
-  </div>
-
-</div>
-
-<footer>
-  <div class="credit">Ads managed by <a href="https://wa.link/y2913g" target="_blank" onclick="event.stopPropagation()">@Metamind_Agency</a></div>
-</footer>
-
-<script>
-const c=document.getElementById('c'),ctx=c.getContext('2d');
-let W=c.width=innerWidth,H=c.height=innerHeight;
-const cols=['0,255,80','0,255,80','255,51,73','255,200,0'];
-const pts=Array.from({length:65},()=>({
-  x:Math.random()*W,y:Math.random()*H,
-  r:Math.random()*1.7+.3,
-  dx:(Math.random()-.5)*.38,dy:-Math.random()*.55-.1,
-  op:Math.random()*.5+.12,
-  col:cols[Math.floor(Math.random()*cols.length)]
-}));
-(function draw(){
-  ctx.clearRect(0,0,W,H);
-  pts.forEach(p=>{
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${p.col},${p.op})`;
-    ctx.shadowBlur=8;ctx.shadowColor=`rgba(${p.col},.4)`;
-    ctx.fill();p.x+=p.dx;p.y+=p.dy;
-    if(p.y<-5){p.y=H+5;p.x=Math.random()*W}
-    if(p.x<0||p.x>W)p.dx*=-1;
-  });
-  requestAnimationFrame(draw);
-})();
-window.addEventListener('resize',()=>{W=c.width=innerWidth;H=c.height=innerHeight});
-
-const revEls=document.querySelectorAll('.reveal');
-function runReveal(){
-  revEls.forEach(el=>{
-    if(el.getBoundingClientRect().top<window.innerHeight-20)
-      el.classList.add('visible');
-  });
-}
-window.addEventListener('scroll',runReveal,{passive:true});
-document.addEventListener('DOMContentLoaded',()=>setTimeout(runReveal,60));
-runReveal();
-</script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -485,13 +196,108 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '775720305132983');
+fbq('init', '837806292707253');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=775720305132983&#038;ev=PageView&#038;noscript=1"
+src="https://www.facebook.com/tr?id=837806292707253&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<body>
+
+<div class="container">
+
+<img src="https://salmon-mandrill-935968.hostingersite.com/wp-content/uploads/2025/10/focus-forex-logo.jpg" class="logo">
+
+<div class="badge">👑 Professional Forex Mentor</div>
+
+<div class="offer">
+🔥 LIMITED OFFER — Lifetime FREE Premium Forex Access — Only First 100 Users
+</div>
+
+<h1>
+Learn Forex The Right Way <br>
+With Structured Education in my channel
+</h1>
+
+<div class="countdown">
+⏳ Offer Ends In: <span id="timer">59:59</span>
+</div>
+
+<div class="cta">
+<a href="https://t.me/+NMEl-FUxOio2YmQ1">Join Free Telegram Community</a>
+</div>
+
+<div class="members">
+12,000+ Community Members 🚀
+</div>
+
+<div class="features">
+
+<div class="card">
+<div class="icon">
+<svg width="40" fill="#ff00c8" viewBox="0 0 24 24">
+<path d="M3 13h2v-2H3v2zm4 0h14v-2H7v2z"/>
+</svg>
+</div>
+<h3>Live Market Breakdown</h3>
+<p>Understand structure, liquidity and price action logic.</p>
+</div>
+
+<div class="card">
+<div class="icon">
+<svg width="40" fill="#ff00c8" viewBox="0 0 24 24">
+<path d="M12 2l4 20-4-4-4 4z"/>
+</svg>
+</div>
+<h3>Gold Strategy Learning</h3>
+<p>Concept-based education focused on XAUUSD.</p>
+</div>
+
+<div class="card">
+<div class="icon">
+<svg width="40" fill="#ff00c8" viewBox="0 0 24 24">
+<path d="M12 1l3 5 6 .9-4.5 4.4 1 6-5.5-3-5.5 3 1-6L3 6.9 9 6z"/>
+</svg>
+</div>
+<h3>Risk Management System</h3>
+<p>Position sizing, discipline and capital protection.</p>
+</div>
+
+</div>
+
+<div class="final-cta">
+<h2>Start Learning Today — Free Access</h2>
+<a href="https://t.me/+NMEl-FUxOio2YmQ1">Join Now</a>
+</div>
+
+<div class="footer">
+Ads managed by Metamind Agency • 
+<a href="https://wa.link/y2913g">Contact for Ads</a>
+<br><br>
+
+<a href="https://forexmind.online/terms-conditions/">Terms</a> |
+<a href="https://forexmind.online/disclaimer/">Disclaimer</a> |
+<a href="https://forexmind.online/privacy-policy/">Privacy</a>
+
+<div class="disclaimer">
+Educational purposes only. We do not provide financial advice or guarantee profits. Trading involves risk.
+</div>
+</div>
+
+</div>
+
+<script>
+let time = 3600;
+const timer = document.getElementById("timer");
+
+setInterval(()=>{
+    let minutes = Math.floor(time/60);
+    let seconds = time%60;
+    timer.innerHTML = String(minutes).padStart(2,'0') + ":" + String(seconds).padStart(2,'0');
+    if(time>0) time--;
+},1000);
+</script>
 
 </body>
 </html>
